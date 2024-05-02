@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+    <div class="max-w-xl py-4 mx-auto bg-slate-800 text-center rounded-lg">
+            <h1 class="text-3xl text-white">Sign up</h1>
+
+            <form class="mt-6 px-8 space-y-4" method="post" action="{% url 'account:signup' %}">
+                {% csrf_token %}
+                <div>
+                    <label class="text-white">Name</label><br>
+                    <label>
+                        <input name="name" type="text" class="w-full py-2 px-3 bg-slate-500 text-white rounded-lg">
+                    </label>
+                </div>
+                <div>
+                    <label class="text-white">E-mail</label><br>
+                    <label>
+                        <input name="email" type="email" class="w-full py-2 px-3 bg-slate-500 text-white rounded-lg">
+                    </label>
+                </div>
+                <div>
+                    <label class="text-white">Password</label><br>
+                    <label>
+                        <input name="password1" type="password" class="w-full py-2 px-3 bg-slate-500 text-white rounded-lg">
+                    </label>
+                </div>
+                <div>
+                    <label class="text-white">Repeat password</label><br>
+                    <label>
+                        <input name="password2" type="password" class="w-full py-2 px-3 bg-slate-500 text-white rounded-lg">
+                    </label>
+                </div>
+                <div>
+                    <button class="py-4 px-8 bg-sky-600 text-white rounded-lg">Sign up</button>
+                </div>
+            </form>
+        </div>
+{% endblock %}
