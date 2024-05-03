@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
@@ -35,10 +36,32 @@ def signup(request):
     return render(request, 'account/signup.html')
 
 
+@login_required
 def logout(request):
     auth_logout(request)
     return render(request, 'account/login.html')
 
 
+@login_required
 def user_profile(request):
+    if request.method == 'GET':
+        name = request.user.name
+        email = request.user.email
+        bio = request.user.bio
+
+        return render(request, 'account/profile.html', {'name': name, 'email': email, 'bio': bio})
+    else:
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        bio = request.POST.get('bio', '')
+
+        if name or email or bio:
+            user = request.user
+            user.name = name
+            user.email = email
+            user.bio = bio
+            user.save()
+
+            return redirect('account:profile')
+
     return render(request, 'account/profile.html')
