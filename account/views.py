@@ -91,16 +91,21 @@ def user_profile(request):
                 user.avatar = request.FILES['avatar']
 
             user.save()
-            user.refresh_from_db()
 
             messages.success(request, 'Profile updated successfully')
         else:
-            print(update_user_form.errors)
+            messages.error(request, 'Error updating profile')
     else:
         update_user_form = UserForm(instance=user)
+
+    request.user.refresh_from_db()
+
     return render(request, 'account/profile.html', {'update_user_form': update_user_form, 'user': user})
 
 
+@login_required
 def delete_user_avatar(request):
     request.user.avatar.delete()
+    # request.user.save()
+
     return redirect('/profile/')

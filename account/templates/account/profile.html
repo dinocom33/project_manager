@@ -44,10 +44,10 @@
 
                                     <input name="avatar" id="dropzone-file" type="file" class="hidden"/>
                                 </label>
-                                <button type="button"
+                                <a href="{% url 'account:delete_avatar' %}" type="button"
                                         class="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-red-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
                                     Delete picture
-                                </button>
+                                </a>
                             </div>
                         </div>
 
