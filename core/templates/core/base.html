@@ -131,7 +131,7 @@
     </div>
 </nav>
 
-<main class="py-6 px-8 mb-4">
+<main class="py-6 px-8 mb-8">
     {% if messages %}
         {% for message in messages %}
             {% if message.tags == 'success' %}
@@ -188,12 +188,12 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-    <body class="bg-gray-50 cs-font">
+    <body class="flex-grow bg-gray-50 cs-font">
         {% block content %}
         {% endblock %}
     </body>
 </main>
-<footer class="fixed bottom-0 w-full bg-white shadow mt-6 dark:bg-gray-800">
+<footer class="mb-auto w-full bg-white shadow mt-6 dark:bg-gray-800">
     <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
       <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2024 All Rights Reserved.

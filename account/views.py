@@ -11,7 +11,6 @@ User = get_user_model()
 
 def login(request):
     next_url = request.POST.get('next')
-    print(next_url)
 
     if request.user.is_authenticated:
         return redirect('/')
@@ -56,8 +55,6 @@ def signup(request):
         email = request.POST.get('email', '')
         password1 = request.POST.get('password1', '')
         password2 = request.POST.get('password2', '')
-
-        print(name, email, password1, password2)
 
         if User.objects.filter(email=email).exists():
             messages.error(request, 'Email already exists')
