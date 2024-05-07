@@ -19,6 +19,7 @@ def login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        remember_me = request.POST.get('remember_me')
 
         if not User.objects.filter(email=email).exists():
             messages.error(request, 'Invalid Username')
@@ -28,6 +29,11 @@ def login(request):
             user = authenticate(email=email, password=password)
 
             if user:
+                if remember_me:
+                    request.session.set_expiry(0)
+                    request.session.modified = True
+                    auth_login(request, user)
+
                 auth_login(request, user)
                 messages.success(request, f'{user.name if user.name else user.email}, welcome to Project Manager')
                 return HttpResponseRedirect(next_url if next_url else '/')

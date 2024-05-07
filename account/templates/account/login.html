@@ -18,7 +18,7 @@
         </div>
 
 
-        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="shadow-2xl mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 {% if next %}
                     <form method="post" action="{% url 'account:login' %}/?next={{ next }}">
@@ -53,9 +53,9 @@
 
                 <div class="mt-6 flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember_me" name="remember" type="checkbox" value="1"
+                        <input id="remember_me" name="remember_me" type="checkbox" value="0"
                                class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                        <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-900">
+                        <label for="remember_me"  class="ml-2 block text-sm leading-5 text-gray-900">
                             Remember me
                         </label>
                     </div>
