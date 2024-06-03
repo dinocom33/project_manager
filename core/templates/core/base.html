@@ -3,9 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js "></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Manager | {% block title %}{% endblock %}</title>
 </head>
@@ -189,8 +194,8 @@
         {% endfor %}
     {% endif %}
     <body class="flex-grow bg-gray-50 cs-font">
-        {% block content %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
     </body>
 </main>
 <footer class="mb-auto w-full bg-white shadow mt-6 dark:bg-gray-800">
@@ -214,6 +219,7 @@
         </ul>
     </div>
 </footer>
+<script src=" https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js "></script>
 <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
 </body>
 </html>
