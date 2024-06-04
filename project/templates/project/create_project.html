@@ -7,16 +7,12 @@
     <form class="mt-6 px-8 space-y-4" method="post" action="{% url 'project:add' %}">
         {% csrf_token %}
         <div>
-            <label>Name</label><br>
-            <label>
-                <input name="name" type="text" class="w-full py-2 px-3 bg-slate-500 text-white rounded-lg">
-            </label>
+            <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Name</label>
+            <input type="text" id="name" name="name" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <div>
-            <label>Description</label><br>
-            <label>
-                <textarea name="description" class="w-full py-2 px-3 bg-slate-500 text-white rounded-lg"></textarea>
-            </label>
+            <label for="description" class="block mb-2 font-medium text-gray-900 dark:text-white">Description</label>
+            <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
         </div>
 
         <div>
