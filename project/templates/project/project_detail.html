@@ -121,7 +121,7 @@
                 type="button">
             Delete
         </button>
-{#        Modal Project delete#}
+        {#        Modal Project delete#}
         <div id="modal-delete-project" tabindex="-1"
              class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
@@ -158,11 +158,14 @@
                 </div>
             </div>
         </div>
+        <a href="{% url 'project:upload_file' project.id %}"
+           class="py-4 px-8 bg-slate-500 text-white rounded-lg inline-block">
+            Upload file
+        </a>
         <a href="{% url 'project:projects' %}" class="py-4 px-8 bg-gray-500 text-white rounded-lg inline-block">
             Back
         </a>
     </div>
-
     {#    {% if todolists %}#}
     <div class="mt-6 mb-4 md:mb-8 lg:mb-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:mb-2">
         {% for todolist in project.todolists.all %}
