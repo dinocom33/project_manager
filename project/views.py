@@ -59,7 +59,7 @@ def edit_project(request, pk):
 
             return redirect('project:project_detail', pk=project.id)
 
-    return render(request, 'project/edit_project.html', {'project': project})
+    return redirect('project:project_detail', pk=project.id)
 
 
 @login_required()
