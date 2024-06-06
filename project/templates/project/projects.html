@@ -75,7 +75,7 @@
                             {{ project.name }}
                         </h5>
                         <p class="mb-4 text-sm ">
-                            {{ project.description | truncatechars:50 }}
+                            {{ project.description | truncatechars:20 | safe }}
                         </p>
                         <p class="mb-4 text-sm ">
                             Todolists: {{ project.todolists.count }}
