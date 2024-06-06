@@ -43,7 +43,7 @@
                     {% endif %}
                 </button>
             {% else %}
-                <a class="md:text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-700 py-1 px-4 border border-transparent text-sm font-medium rounded-md md:dark:text-gray-400"
+                <a class="md:text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-blue-900 py-1 px-4 border border-transparent text-sm font-medium rounded-md md:dark:text-gray-400"
                    href="{% url 'account:login' %}">
                     Sign in
                 </a>
@@ -198,7 +198,7 @@
     {% endblock %}
     </body>
 </main>
-<footer class="mb-auto w-full bg-white shadow mt-6 dark:bg-gray-800">
+<footer class="fixed bottom-0 mb-auto w-full bg-white shadow mt-6 dark:bg-gray-800">
     <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
       <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2024 All Rights Reserved.
