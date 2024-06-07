@@ -148,7 +148,7 @@
                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to
                             delete {{ todolist.name }}?</h3>
                         <a data-modal-toggle="modal-delete-todolist" type="button"
-                           href="{% url 'todolist:delete' project.id todolist.id %}"
+                           href="{% url 'todolist:delete_todolist' project.id todolist.id %}"
                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                             Yes, I'm sure
                         </a>

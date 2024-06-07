@@ -111,10 +111,14 @@ def upload_file(request, pk):
 
 
 @login_required
-def delete_file(request, project_id, pk):
+def delete_file(request, project_id, file_id):
     project = Project.objects.filter(created_by=request.user).get(pk=project_id)
-    projectfile = project.files.get(pk=pk)
 
-    projectfile.delete()
+    # if project.files.filter(pk=pk).exists():
+    file = project.files.get(pk=file_id)
+
+    file.delete()
+
+    messages.success(request, 'File deleted successfully')
 
     return redirect('project:project_detail', pk=project.id)

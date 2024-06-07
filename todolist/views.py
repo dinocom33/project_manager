@@ -1,5 +1,6 @@
 import json
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -71,7 +72,9 @@ def edit(request, project_id, pk):
 @login_required()
 def delete(request, project_id, pk):
     project = Project.objects.filter(created_by=request.user).get(pk=project_id)
-    todolist = ToDoList.objects.filter(created_by=request.user, project=project).get(pk=pk)
+    todolist = ToDoList.objects.filter(project=project).get(pk=pk)
 
     todolist.delete()
+    messages.success(request, 'ToDo list deleted successfully')
+
     return redirect('project:project_detail', pk=project_id)
