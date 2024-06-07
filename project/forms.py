@@ -5,4 +5,4 @@ from .models import Project, ProjectFile
 class ProjectFileForm(ModelForm):
     class Meta:
         model = ProjectFile
-        fields = ['attachment']
+        fields = ['name', 'attachment']

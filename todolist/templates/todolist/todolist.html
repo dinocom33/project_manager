@@ -54,7 +54,7 @@
                                 <label for="description"
                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
                                     Description</label>
-                                <textarea id="description" rows="4" name="description"
+                                <textarea id="description" rows="4" name="description" placeholder="Write description here"
                                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ task.description }}</textarea>
                             </div>
                         </div>
@@ -181,8 +181,8 @@
                     <p class="mb-4 text-sm ">
                         {{ task.description | truncatechars:50 }}
                     </p>
-                    <p class="mb-4 text-sm ">
-                        Status: {{ task.get_status_display }}
+                    <p class="mb-4 text-sm">
+                        Status: <span class="text-blue-900">{{ task.get_status_display }}</span>
                     </p>
                     <a href="{% url 'task:detail' todolist.project.id todolist.id task.id %}"
                        type="button"

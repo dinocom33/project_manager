@@ -100,6 +100,7 @@ def upload_file(request, pk):
         if form.is_valid():
             file = form.save(commit=False)
             file.project = project
+            file.uploaded_by = request.user
             file.save()
 
             return redirect('project:project_detail', pk=project.id)
@@ -107,3 +108,13 @@ def upload_file(request, pk):
         form = ProjectFileForm()
 
     return render(request, 'project/upload_file.html', {'project': project, 'form': form})
+
+
+@login_required
+def delete_file(request, project_id, pk):
+    project = Project.objects.filter(created_by=request.user).get(pk=project_id)
+    projectfile = project.files.get(pk=pk)
+
+    projectfile.delete()
+
+    return redirect('project:project_detail', pk=project.id)

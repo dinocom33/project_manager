@@ -25,6 +25,8 @@ class ProjectFile(models.Model):
     name = models.CharField(max_length=255)
     attachment = models.FileField(upload_to='project_files')
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='files')
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='uploaded_by')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
