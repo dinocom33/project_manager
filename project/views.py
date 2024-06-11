@@ -39,7 +39,7 @@ def add_project(request):
 @login_required()
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    collaborators = [name for name in project.collaborators.values_list('name', flat=True)]
+    collaborators = project.collaborators.all()
 
     # Check if the user is either the owner or a collaborator
     if request.user == project.owner or request.user in project.collaborators.all():
