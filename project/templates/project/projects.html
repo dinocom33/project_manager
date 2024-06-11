@@ -73,13 +73,13 @@
                             {{ project.name }}
                         </h5>
                         <p class="mb-4 text-sm ">
-                            {{ project.description | truncatechars:20 | safe }}
-                        </p>
-                        <p class="mb-4 text-sm ">
                             Todolists: {{ project.todolists.count }}
                         </p>
                         <p class="mb-4 text-sm ">
                             Files: {{ project.files.count }}
+                        </p>
+                        <p class="mb-4 text-sm ">
+                            Collaborators: {{ project.collaborators.count }}
                         </p>
                         <a href="{% url 'project:project_detail' project.id %}"
                            type="button"
@@ -91,7 +91,7 @@
                     </div>
                     <div class="flex items-center justify-between border-t-2 border-neutral-300 mx-2 px-6 py-3 text-sm text-surface/75 dark:border-white/10 dark:text-neutral-300">
                         <div>
-                            Owner: {% firstof project.created_by.name project.created_by.email %}
+                            Owner: {% firstof project.owner.name project.owner.email %}
                         </div>
                         <div>
                             Added on: {{ project.created_at | date:"F j, Y" }}
