@@ -134,22 +134,23 @@ def delete_file(request, project_id, file_id):
 
 @login_required()
 def add_note(request, project_id):
-    project = get_object_or_404(Project, pk=project_id, collaborators__in=[request.user])
+    project = get_object_or_404(Project, pk=project_id)
 
     if request.method == 'POST':
-        title = request.POST.get('title', '')
-        body = request.POST.get('body', '')
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+
+        if request.user != project.owner and request.user not in project.collaborators.all():
+            messages.error(request, "You do not have permission to add notes to this project.")
+            return redirect('project:project_detail', pk=project.id)
 
         if title:
-            if request.user == project.owner or request.user in project.collaborators.all():
-                note = Notes.objects.create(title=title, body=body, project=project, created_by=request.user)
-                note.save()
+            note = Notes.objects.create(title=title, body=body, project=project, created_by=request.user)
+            note.save()
 
-                messages.success(request, 'Note added successfully')
+            messages.success(request, 'Note added successfully')
 
-                return redirect('project:project_detail', pk=project.id)
-            else:
-                messages.error(request, 'You are not authorized to add notes to this project')
+            return redirect('project:project_detail', pk=project.id)
 
     return redirect('project:project_detail', pk=project.id)
 
