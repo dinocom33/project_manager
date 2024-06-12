@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Project, ProjectFile
+from .models import Project, ProjectFile, ProjectCollaborator
 
 
 class ProjectFileForm(ModelForm):
@@ -9,6 +9,10 @@ class ProjectFileForm(ModelForm):
         fields = ['name', 'attachment']
 
 
-class InviteCollaboratorForm(forms.Form):
+class InviteCollaboratorForm(ModelForm):
     email = forms.EmailField()
-    role = forms.CharField(max_length=255, required=False)
+    # role = forms.CharField(max_length=255, required=False)
+
+    class Meta:
+        model = ProjectCollaborator
+        fields = ['email', 'role']

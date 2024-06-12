@@ -39,9 +39,10 @@ def add_project(request):
 @login_required()
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    collaborators = project.collaborators.all()
+    collaborators = ProjectCollaborator.objects.filter(project=project)
 
-    # Check if the user is either the owner or a collaborator
+    print(collaborators)
+
     if request.user == project.owner or request.user in project.collaborators.all():
         return render(request, 'project/project_detail.html', {'project': project, 'collaborators': collaborators})
     else:
@@ -165,7 +166,7 @@ def invite_collaborator(request, project_id):
         form = InviteCollaboratorForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
-            role = form.cleaned_data['role']
+            role = form.cleaned_data['role'] or 'Collaborator'
             try:
                 user = User.objects.get(email=email)
                 if ProjectCollaborator.objects.filter(user=user, project=project).exists():

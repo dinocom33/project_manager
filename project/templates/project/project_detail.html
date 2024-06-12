@@ -3,8 +3,8 @@
 
 {% block content %}
 
-    <h1 class="mb-6 text-3xl">{{ project.name }}</h1>
-    <p class="mb-8 text-lg">{{ project.description }}</p>
+    <h1 class="mt-6 mb-6 text-3xl text-center">{{ project.name }}</h1>
+    <p class="mb-8 text-lg text-center">{{ project.description }}</p>
 
     <!-- Modal Add ToDolist --->
     <div class="mb-8 flex flex-wrap justify-start gap-4">
@@ -350,9 +350,9 @@
                     </button>
                 </div>
                 <div class="p-4 md:p-5">
-                    {% for name in collaborators %}
+                    {% for collaborator in collaborators %}
                     <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        {% firstof name.name name.email %}
+                        {% firstof collaborator.user.name collaborator.user.email %} - <span class="text-red-500">{{ collaborator.role }}</span>
                     </p>
                     {% endfor %}
                 </div>
@@ -372,8 +372,8 @@
                     <h3 class="mb-2 text-xl font-medium leading-tight ">
                         {{ todolist.name }}
                     </h3>
-                    <p class="mb-4 text-sm ">
-                        {{ todolist.description | truncatechars:20 | safe }}
+                    <p class="mb-4 text-sm inline-block">
+                        {{ todolist.description }}
                     </p>
                     <p class="mb-4 text-sm ">
                         Tasks: {{ todolist.tasks.count }}
