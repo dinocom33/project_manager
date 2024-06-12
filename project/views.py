@@ -40,11 +40,11 @@ def add_project(request):
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
     collaborators = ProjectCollaborator.objects.filter(project=project)
-
-    print(collaborators)
+    project_files = ProjectFile.objects.filter(project=project).order_by('-uploaded_at')
 
     if request.user == project.owner or request.user in project.collaborators.all():
-        return render(request, 'project/project_detail.html', {'project': project, 'collaborators': collaborators})
+        return render(request, 'project/project_detail.html',
+                      {'project': project, 'collaborators': collaborators, 'project_files': project_files})
     else:
         messages.error(request, "You do not have permission to access this project.")
         return redirect('projects')
