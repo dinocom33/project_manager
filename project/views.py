@@ -144,7 +144,7 @@ def add_note(request, project_id):
             messages.error(request, "You do not have permission to add notes to this project.")
             return redirect('project:project_detail', pk=project.id)
 
-        if title:
+        if title and body:
             note = Notes.objects.create(title=title, body=body, project=project, created_by=request.user)
             note.save()
 
