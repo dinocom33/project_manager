@@ -4,6 +4,11 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserM
 from django.db import models
 
 
+def user_directory_avatars_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/avatars/user_<username>/<filename>
+    return 'avatars/user_{0}/{1}'.format(instance.email, filename)
+
+
 class CustomUserManager(UserManager):
     def _create_user(self, name, email, password, **extra_fields):
         if not email:
@@ -38,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(unique=True)
     bio = models.TextField(blank=True, null=True)
-    avatar = models.ImageField(blank=True, null=True, upload_to='avatars')
+    avatar = models.ImageField(blank=True, null=True, upload_to=user_directory_avatars_path)
     remember_me = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
